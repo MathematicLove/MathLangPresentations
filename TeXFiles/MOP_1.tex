@@ -1,0 +1,135 @@
+\documentclass{beamer}
+\usepackage[T2A]{fontenc}  % Кодировка T2A
+\usepackage[utf8]{inputenc} % UTF-8
+\usepackage[english,russian]{babel} % Языки
+\usepackage{amsmath} % Для математических формул
+\usepackage{graphicx} % Для вставки изображений
+
+\usetheme{Madrid} % Выбор темы (можно заменить на другой, например "Berlin", "Warsaw" и т.д.)
+\usecolortheme{default} % Цветовая схема
+
+% Настройка титульного слайда
+\title[МОП]{Краткая теория множеств}
+\author{Салимли Айзек}
+\institute{MathLang}
+\date{\today}
+\newenvironment{rusdefinition}[1][Определение]{
+    \begin{block}{#1}
+}{\end{block}}
+\newenvironment{rexample}[1][Пример]{\begin{exampleblock}{#1}}{\end{exampleblock}}
+
+\begin{document}
+
+% Титульный слайд
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Автоматическое содержание перед каждым разделом
+\AtBeginSection[]{
+    \begin{frame}{Содержание}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+% Раздел 1
+\section{Множества}
+
+\begin{frame}{Элементы множеств}
+    \begin{rusdefinition}
+        это совокупность различных объектов, объединённых по какому-либо признаку.
+        Эти объекты называются элементами множества.
+    \end{rusdefinition}
+    \begin{rexample}
+
+    Пусть дано множество X, такое что:
+    \[
+        \forall x_i \in X, \space i \in [0, 1, \dots, n], n \in \mathbb{N}
+    \]
+\end{rexample}
+    \begin{itemize}
+        \item Элементы множества - называется $x_i$, где i - позиция элемента;
+        \item $\mathbb{N}$ - множество натуральных чисел: 1, 2, 3, ..., +$\infty$;
+        \item $\forall$ - предикат обозначающий: Для любых/любого/всех. 
+    \end{itemize}
+\end{frame}
+
+% Раздел 2
+\section{Отношения}
+
+\begin{frame}{Отношения}
+    Пусть даны два множества $X$. Отношением $R$ называется подмножество декартова произведения:
+    \[
+        R \subseteq X \times X
+    \]
+    Образуя пары $(x_i, x_j)$, которые связаны между собой каким-либо отношением R.
+    Основные типы отношений (для $R \subseteq X \times X $):
+    \begin{enumerate}
+        \item \textbf{Рефлексивность}: $\forall x \in X \colon x R x$;
+        \item \textbf{Симметричность}: $\forall x, y \in X \colon x R y \implies y R x$;
+        \item \textbf{Транзитивность}: $\forall x, y, z \in X \colon x R y \land y R z \implies x R z$.
+    \end{enumerate}
+    \textbf{\textcolor{red}{Коньюнкция - $\land$ тоже самое что \&\& (логическое и)}}
+\end{frame}
+
+\begin{frame}{Отношения}
+    \begin{rexample}    
+    \[ 12/4 = 6/2 \] 
+    \[ 10 \cdot 5 = 5 \cdot 10 \]
+    \[ 3 > 2 \texttt{ } \&\& \texttt{ } 3 > 1 \rightarrow 3 > 1 \] 
+\end{rexample}
+То есть:
+\begin{enumerate}
+    \item Рефлексивность - когда операция над элементом множества дает этот же элемент;
+    \item Симметрия - когда операция над элементами множества равны при их перестановки;
+    \item Транзитивность - достижимость начального элемента до n-го элемента через элемент "посредник".
+\end{enumerate}
+\end{frame}
+
+\section{Булеан}
+
+\begin{frame}{Булеан}
+    Пусть дано множество $X$. 
+
+    \begin{rusdefinition}
+        Подмножество - это набор элементов, содержащихся в множестве $X$. 
+    \end{rusdefinition}
+
+    Например, если $X = \{1,2,3,4,5,6,7,8,9,0\}$, то множество всех четных чисел 
+    $X_{\text{even}} = \{2,4,6,8\}$ является подмножеством $X$:
+    \[ X_{\text{even}} \subset X \]
+    где $\subset$ - знак подмножества.
+
+    \begin{rusdefinition}
+        Булеан (множество всех подмножеств) множества $X$ обозначается как $\mathcal{P}(X)$ или $2^X$.
+    \end{rusdefinition}
+\end{frame}
+
+\begin{frame}{Булеан}
+    Мощность булеана вычисляется по формуле:
+    \[ |\mathcal{P}(X)| = 2^{|X|} \]
+    где $|X|$ - мощность (количество элементов) множества $X$.
+
+    \alert{Важно! Пустое множество $\emptyset$ всегда является элементом булеана.}
+\begin{rexample}    
+        Для $X = \{a,b,c\}$:
+        \[ |\mathcal{P}(X)| = 2^3 = 8 \]
+        Булеан включает:
+        \begin{itemize}
+            \item $\emptyset$ - 1 подмножество
+            \item $\{a\}, \{b\}, \{c\}$ - 3 подмножества
+            \item $\{a,b\}, \{b,c\}, \{b,c\}$ - 3 подмножества 
+            \item $\{a,b,c\}$ - 1 подмножество
+        \end{itemize}
+    \end{rexample}
+\end{frame}
+% Заключительный слайд
+\begin{frame}{}
+    \centering
+    \Large Спасибо за внимание!
+    
+    \vspace{1cm}
+    \small \textcolor{red}{Пишите вопросы в комментариях!!!}
+\end{frame}
+
+\end{document}
