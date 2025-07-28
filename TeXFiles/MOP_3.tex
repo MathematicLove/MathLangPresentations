@@ -1,0 +1,230 @@
+\documentclass{beamer}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title[МОП]{Краткая теория множеств}
+\author{Салимли Айзек}
+\institute{MathLang}
+\date{\today}
+\newenvironment{rusdefinition}[1][Определение]{
+    \begin{block}{#1}
+}{\end{block}}
+\newenvironment{rexample}[1][Пример]{\begin{exampleblock}{#1}}{\end{exampleblock}}
+
+\lstset{
+    language=Haskell,
+    basicstyle=\ttfamily\small,
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={�}{{\bfseries?}}1 {^^ff}{{\bfseries?}}1,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2,
+    frame=single
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\AtBeginSection[]{
+    \begin{frame}{Содержание}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\section{Универсум}
+\begin{frame}{Универсум}
+\begin{rusdefinition}{Универсум}
+Универсум $\mathbb{U}$ - множество, содержащее все возможные множества рассматриваемой теории:
+\[ \mathbb{U} = \{x\ |\ x \text{ - множество}\} \]
+\end{rusdefinition}
+
+\begin{rexample}{Примеры универсумов}
+\begin{itemize}
+\item В теории чисел: $\mathbb{U} = \mathbb{Z}$
+\item В теории множеств: $\mathbb{U}$ содержит все множества
+\end{itemize}
+\end{rexample}
+
+\begin{alertblock}{Проблема}
+Наивное определение универсума приводит к парадоксам, таким как \textbf{парадокс Рассела}
+\end{alertblock}
+\end{frame}
+
+\subsection{Парадокс Рассела}
+\begin{frame}{Парадокс Рассела}
+\begin{rusdefinition}{Формулировка}
+Рассмотрим множество $R$ всех множеств, которые \textbf{не} содержат себя в качестве элемента:
+\[ R = \{x\ |\ x \notin x\} \]
+\end{rusdefinition}
+
+\begin{rexample}{Иллюстрация}
+\begin{itemize}
+\item Множество всех книг $\notin$ самому себе
+\item Множество всех множеств $\in$ самому себе
+\end{itemize}
+\end{rexample}
+
+\begin{block}{Парадокс}
+Если $R \in R$, то по определению $R \notin R$.\\
+Если $R \notin R$, то по определению $R \in R$.\\
+Получаем противоречие.
+\end{block}
+\end{frame}
+
+\begin{frame}{Разрешение парадокса}
+\begin{rusdefinition}{Аксиоматическое решение}
+Теория множеств Цермело-Френкеля (ZFC) запрещает:
+\begin{itemize}
+\item Создание множества всех множеств
+\item Использование неограниченного принципа свертки
+\end{itemize}
+\end{rusdefinition}
+
+\begin{rexample}{Альтернативы}
+\begin{itemize}
+\item Теория типов (Рассел)
+\item NBG-теория (классы вместо множеств)
+\end{itemize}
+\end{rexample}
+
+\begin{block}{Значение}
+Парадокс показал необходимость строгой аксиоматизации теории множеств
+\end{block}
+\end{frame}
+
+\section{Операции над множествами}
+
+\begin{frame}{Операции над множествами}
+Обычно говорят о бинарных и унарных операциях над множествами.
+Пусть даны множестав X, Y.
+\begin{itemize}
+    \item Дополнение $\bar{X}$
+    \item Объединение $X \cup Y$
+    \item Пересечение $X \cap Y$
+    \item Разность $X \setminus Y$
+    \item Симметрическая разность $X \oplus Y$
+\end{itemize}
+\end{frame}
+
+\subsection{Дополнение множесвта}
+\begin{frame}{Дополнение множества}
+    \begin{block}{Определение}
+    Дополнение $\overline{X}$ - множество элементов, \textbf{не} принадлежащих $X$ в рамках универсального множества $U$.
+    \end{block}
+    \begin{exampleblock}{Пример}
+    Пусть $U = \{1,2,3,4,5\}$, $X = \{1,2\}$\\
+    Тогда $\overline{X} = \{3,4,5\}$
+    \end{exampleblock}
+\end{frame}
+
+\subsection{Свойства дополнения}
+\begin{frame}{Свойства дополнения}
+    \begin{block}{Основные свойства}
+    \begin{itemize}
+        \item $\overline{\overline{X}} = X$ (инволютивность)
+        \item $X \cap \overline{X} = \varnothing$ (непересекаемость)
+        \item $X \cup \overline{X} = U$ (полнота)
+    \end{itemize}
+    \end{block}
+    \begin{alertblock}{Важное следствие}
+    Законы де Моргана:
+    \begin{itemize}
+        \item $\overline{A \cup B} = \overline{A} \cap \overline{B}$
+        \item $\overline{A \cap B} = \overline{A} \cup \overline{B}$
+    \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\subsection{Объединение множеств}
+\begin{frame}{Объединение множеств}
+    \begin{block}{Определение}
+        $X \cup Y$ - множество всех элементов, принадлежащих \textbf{хотя бы одному} из множеств $X$ или $Y$.
+    \end{block}
+    \begin{exampleblock}{Пример}
+        $X = \{1,2,3\},\ Y = \{3,4,5\}$ \\
+        $X \cup Y = \{1,2,3,4,5\}$
+    \end{exampleblock}
+    \begin{block}{Свойства объединения}
+        \begin{itemize}
+            \item Коммутативность: $X \cup Y = Y \cup X$
+            \item Ассоциативность: $(X \cup Y) \cup Z = X \cup (Y \cup Z)$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\section{Пересечение множеств}
+\begin{frame}{Пересечение множеств}
+    \begin{block}{Определение}
+        $X \cap Y$ — множество элементов, принадлежащих \textbf{одновременно} и $X$, и $Y$.
+    \end{block}
+    \begin{exampleblock}{Пример}
+        $X = \{1,2,3\},\ Y = \{2,3,4\}$ \\
+        $X \cap Y = \{2,3\}$
+    \end{exampleblock}
+    \begin{block}{Свойства пересечения}
+        \begin{itemize}
+        \item $X \cap \varnothing = \varnothing$
+        \item Дистрибутивность: $X \cap (Y \cup Z) = (X \cap Y) \cup (X \cap Z)$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\section{Разность множеств}
+\begin{frame}{Разность множеств}
+    \begin{block}{Определение}
+        Разность $X \setminus Y$ — множество элементов, принадлежащих $X$, но \textbf{не} принадлежащих $Y$.
+    \end{block}
+    \begin{exampleblock}{Пример}
+        $X = \{1,2,3,4\},\ Y = \{3,4,5\}$ \\
+        $X \setminus Y = \{1,2\}$
+    \end{exampleblock}
+    \begin{block}{Ключевые свойства}
+        \begin{itemize}
+        \item Не коммутативна: $X \setminus Y \neq Y \setminus X$
+        \item Связь с дополнением: $X \setminus Y = X \cap \overline{Y}$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\section{Симметрическая разность}
+\begin{frame}{Симметрическая разность}
+    \begin{block}{Определение}
+        Симметрическая разность $X \oplus Y = (X \setminus Y) \cup (Y \setminus X)$ — множество элементов, принадлежащих \textbf{ровно одному} из множеств $X$ или $Y$.
+    \end{block}
+    \begin{exampleblock}{Наглядный пример}
+        \begin{itemize}
+            \item $X = \{1,2,3\}$
+            \item $Y = \{3,4,5\}$
+            \item $X \oplus Y = \{1,2,4,5\}$
+        \end{itemize}
+    \end{exampleblock}
+    \begin{block}{Характеристики}
+        \begin{itemize}
+            \item \textbf{Коммутативность}: $X \oplus Y = Y \oplus X$
+            \item \textbf{Самообратимость}: $X \oplus X = \varnothing$
+            \item \textbf{Ассоциативность}: $(X \oplus Y) \oplus Z = X \oplus (Y \oplus Z)$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{}
+    \centering
+    \Large Спасибо за внимание!
+    
+    \vspace{1cm}
+    \small \textcolor{red}{Пишите вопросы в комментариях!!!}
+\end{frame}
+
+\end{document}

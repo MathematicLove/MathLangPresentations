@@ -1,0 +1,204 @@
+\documentclass{beamer}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title[МОП]{Краткая теория множеств}
+\author{Салимли Айзек}
+\institute{MathLang}
+\date{\today}
+\newenvironment{rusdefinition}[1][Определение]{
+    \begin{block}{#1}
+}{\end{block}}
+\newenvironment{rexample}[1][Пример]{\begin{exampleblock}{#1}}{\end{exampleblock}}
+
+\lstset{
+    language=Haskell,
+    basicstyle=\ttfamily\small,
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={�}{{\bfseries?}}1 {^^ff}{{\bfseries?}}1,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2,
+    frame=single
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\AtBeginSection[]{
+    \begin{frame}{Содержание}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\section{Бинарный код}
+\begin{frame}{Бинарный код}
+\begin{rusdefinition}{Бинарный код}
+Способ представления информации с помощью двух символов: 0 и 1. Каждая цифра называется \textbf{битом}.
+\end{rusdefinition}
+
+\begin{rexample}{Примеры}
+\begin{itemize}
+\item Число 5: $101_2$
+\item Буква 'A' в ASCII: $01000001_2$
+\item Истина/Ложь: $1/0$
+\end{itemize}
+\end{rexample}
+
+\begin{block}{Математическое представление}
+\[
+\text{Число} = \sum_{i=0}^{n} b_i \times 2^i \quad \text{где } b_i \in \{0,1\}
+\]
+\end{block}
+\end{frame}
+
+\section{Булевы функции}
+\begin{frame}{Булевы функции}
+\begin{rusdefinition}{Булева функция}
+Функция $f: \{0,1\}^n \to \{0,1\}$, где аргументы и результат принимают значения 0 (Ложь) или 1 (Истина).
+\end{rusdefinition}
+
+\begin{rexample}{Базовые функции}
+\begin{itemize}
+\item Тождество: $f(x) = x$
+\item Отрицание: $f(x) = \neg x$
+\item Конъюнкция: $f(x,y) = x \land y$
+\end{itemize}
+\end{rexample}
+\end{frame}
+\begin{frame}{Таблица истинности для $\neg$}
+    \begin{block}{Таблица истинности для $\neg$}
+        \begin{centering}
+        \begin{tabular}{c|c}
+            $x$ & $\neg x$ \\ \hline
+            0 & 1 \\
+            1 & 0 \\
+            \end{tabular}
+        \end{centering}
+    \end{block}
+    \end{frame}
+\begin{frame}{Таблица истинности для $\land$}
+\begin{block}{Таблица истинности}
+    \begin{centering}
+\begin{tabular}{cc|c}
+x & y & $x \land y$ \\ \hline
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 1 \\
+\end{tabular}
+\end{centering}
+\end{block}
+\end{frame}
+
+\begin{frame}{Таблица истинности для $\lor$}
+    \begin{block}{Таблица истинности для $\lor$}
+        \begin{centering}
+    \begin{tabular}{cc|c}
+    x & y & $x \lor y$ \\ \hline
+    0 & 0 & 0 \\
+    0 & 1 & 1 \\
+    1 & 0 & 1 \\
+    1 & 1 & 1 \\
+    \end{tabular}
+\end{centering}
+    \end{block}
+    \end{frame}
+
+    \begin{frame}{Таблица истинности для $\oplus$}
+        \begin{block}{Таблица истинности для $\oplus$}
+            \begin{centering}
+        \begin{tabular}{cc|c}
+        x & y & $x \lor y$ \\ \hline
+        0 & 0 & 0 \\
+        0 & 1 & 1 \\
+        1 & 0 & 1 \\
+        1 & 1 & 0 \\
+        \end{tabular}
+    \end{centering}
+        \end{block}
+        \end{frame}
+    
+
+\section{Основные операции}
+\begin{frame}{Основные операции}
+\begin{rusdefinition}{Логические операции}
+\begin{itemize}
+\item \textbf{НЕ} ($\neg$): Отрицание
+\item \textbf{И} ($\land$): Конъюнкция
+\item \textbf{ИЛИ} ($\lor$): Дизъюнкция
+\item \textbf{искл. ИЛИ} ($\oplus$): Сложение по модулю 2 
+\end{itemize}
+\end{rusdefinition}
+
+\begin{rexample}{Выражения}
+\begin{itemize}
+\item $\neg(1 \lor 0) = 0$
+\item $(1 \land \neg 0) \oplus 1 = 0$
+\end{itemize}
+\end{rexample}
+
+\begin{block}{Битовые аналоги}
+\begin{itemize}
+\item И: \texttt{\&}
+\item ИЛИ: \texttt{|}
+\item НЕ: \texttt{\~}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Порядок операций}
+\begin{frame}{Порядок операций}
+\begin{rusdefinition}{Приоритет операций}
+\begin{enumerate}
+\item Отрицание ($\neg$)
+\item Конъюнкция ($\land$)
+\item Дизъюнкция ($\lor$)
+\item Исключающее ИЛИ ($\oplus$), и др.
+\end{enumerate}
+\end{rusdefinition}
+
+\begin{rexample}{Пример вычисления}
+\[
+\neg 1 \lor 0 \land 1 = (\neg 1) \lor (0 \land 1) = 0 \lor 0 = 0
+\]
+\end{rexample}
+
+\begin{alertblock}{Важно!}
+Всегда используйте скобки для явного задания порядка:
+$(\neg (1 \lor 0)) \land 1$
+\end{alertblock}
+\end{frame}
+\section{Зачем это нужно?}
+\begin{frame}{Зачем это нужно?}
+    \textbf{\textcolor{red}{Компьютер понимает лишь 0 и 1, языки программирования, а точнее компилятор переводчик (инструмент абстракции) с ЯП в бинарный код}}
+    \[ ProgLang \rightarrow MachineCode \]
+    Булевые операции и функции используются в:
+    \begin{itemize}
+        \item Электронике
+        \item Схемы (Logisim, Multisim)
+        \item Шифровании 
+        \item Криптографии
+    \end{itemize}
+\end{frame}
+\begin{frame}{}
+    \centering
+    \Large Спасибо за внимание!
+    
+    \vspace{1cm}
+    \small \textcolor{red}{Пишите вопросы в комментариях!!!}
+\end{frame}
+
+\end{document}

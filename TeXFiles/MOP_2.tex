@@ -1,0 +1,142 @@
+\documentclass{beamer}
+\usepackage[T1,T2A]{fontenc}  % Кодировка T2A
+\usepackage[utf8]{inputenc} % UTF-8
+\usepackage[english,russian]{babel} % Языки
+\usepackage{amsmath} % Для математических формул
+\usepackage{graphicx} % Для вставки изображений
+\usepackage{listings}  % Основной пакет для листингов
+\usepackage{verbatim}
+\usepackage{xcolor}  
+
+\usetheme{Madrid} % Выбор темы (можно заменить на другой, например "Berlin", "Warsaw" и т.д.)
+\usecolortheme{default} % Цветовая схема
+
+% Настройка титульного слайда
+\title[МОП]{Краткая теория множеств}
+\author{Салимли Айзек}
+\institute{MathLang}
+\date{\today}
+\newenvironment{rusdefinition}[1][Определение]{
+    \begin{block}{#1}
+}{\end{block}}
+\newenvironment{rexample}[1][Пример]{\begin{exampleblock}{#1}}{\end{exampleblock}}
+
+\begin{document}
+
+% Титульный слайд
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\lstset{
+    language=Haskell,
+    basicstyle=\ttfamily\small,
+    inputencoding=utf8,  % Двойная обработка кодировки
+    extendedchars=true,
+    literate={�}{{\bfseries?}}1 {^^ff}{{\bfseries?}}1,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2,
+    frame=single
+}
+
+% Автоматическое содержание перед каждым разделом
+\AtBeginSection[]{
+    \begin{frame}{Содержание}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+% Раздел 1
+\section{Функции как отображения}
+
+\begin{frame}{Отображения}
+    Пусть дано множесвто X и множество Y, такие что: 
+    \[ \forall x_i \in X, \texttt{ } i \in \mathbb{N}\]
+    \[ \forall y_i \in Y, \texttt{ } i \in \mathbb{N}\]
+    \begin{rusdefinition}
+        Отображением множества X в множество Y называется - правило $f$ по которому каждому элементу $x_i$ приравнивается \textcolor{red}{ровно один} элемент $y_i$.
+        \[ f \colon X \rightarrow Y \]
+    \end{rusdefinition}
+    То есть по какому-то правилу/функции (неважно в этом контексте) мы превращаем $x_i$ в $y_i$
+\end{frame}
+
+\begin{frame}{Отображения}
+    Самый простой пример когда мы реализовываем функцию перевода из 10-го числа в бинарный формат.
+    Как именно мы реализовываем эту функцию - неважно в контексте отображения, результат - перевод из множества 
+    \[ Dec = \{0, 1, \dots, 8, 9\} \rightarrow Bin = \{0, 1\}\]
+    \begin{rexample}
+    \begin{center}
+        \includegraphics[scale=0.25]{images/DecToBin-1.png}
+    \end{center}
+    \end{rexample}
+\end{frame}
+
+\begin{frame}{Отображения и Haskell}
+    \begin{rusdefinition}
+        Объявление функции в Haskell соответствует математическому понятию отображения множеств.
+    \end{rusdefinition}
+    \begin{rexample}
+hash :: String -> Integer\\
+hash str = sum [fromIntegral (ord c) * prime \\
+            \texttt{ }\texttt{ }| (c, prime) <- zip str primes] \\
+            \texttt{ } where  \\
+            \texttt{ }\texttt{ }primes = cycle [2,3,4,...]\\
+    \end{rexample}
+\end{frame}
+
+\section{Инъекция}
+\begin{frame}{Инъекция}
+\begin{rusdefinition}
+    Функция $f : X \rightarrow Y $ называется инъективной, если:
+    "Разные элементы из X переходят в разные элементы Y.
+    То есть никакие два разных $x_i, x_j$ не даст один и тот же $y_k$
+\end{rusdefinition}
+    Формально: 
+    \[ \forall x_i, x_j \in X \colon f(x_i) = f(x_j) \Rightarrow x_i = x_j \]
+    \begin{rexample}
+    Номера паспортов: у разных людей разные номера.
+\end{rexample}
+\end{frame}
+
+\section{Сюрьекция}
+\begin{frame}{Сюрьекция}
+    \begin{rusdefinition}
+        Каждый элемент Y является образом как минимум одного элемента из X.
+        То есть происходит наложение. 
+    \end{rusdefinition}
+\[ \forall y \in Y \exists x \in X \colon f(x) = y \]
+\begin{rexample}
+Покрытие страны Wi-Fi: каждая точка доступа хоть где-то есть.
+\end{rexample}
+\end{frame}
+
+\section{Биекция}
+
+\begin{frame}{Биекция}
+    \begin{rusdefinition}
+        Функция которое - одновременно инъективна и сюръективна.
+    \end{rusdefinition}
+    \[ f_{bijective} \Rightarrow f_{injective} \land f_{surjective} \]
+    \[ \forall x \in X \not\exists y \in Y : (x,y) \in f \]
+    \begin{rexample}
+    Парковка, где каждому автомобилю (X) — одно место (Y), и все места заняты.
+    \end{rexample}
+\end{frame}
+
+\begin{frame}{Функция}
+    Правило, которое каждому элементу $x \in X$ ставит в соответствие \textcolor{red}{ровно один} элемент $y \in Y$. То есть один вход дает один выход.
+    \begin{rexample}
+Нажатие кнопки (X) $\rightarrow$ выдача одного продукта (Y)
+\end{rexample}
+\end{frame}
+
+\begin{frame}{}
+    \centering
+    \Large Спасибо за внимание!
+    
+    \vspace{1cm}
+    \small \textcolor{red}{Пишите вопросы в комментариях!!!}
+\end{frame}
+
+\end{document}
