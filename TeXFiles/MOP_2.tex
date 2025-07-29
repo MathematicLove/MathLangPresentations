@@ -1,17 +1,21 @@
 \documentclass{beamer}
-\usepackage[T1,T2A]{fontenc}  % Кодировка T2A
-\usepackage[utf8]{inputenc} % UTF-8
-\usepackage[english,russian]{babel} % Языки
-\usepackage{amsmath} % Для математических формул
-\usepackage{graphicx} % Для вставки изображений
-\usepackage{listings}  % Основной пакет для листингов
+\usepackage[T1,T2A]{fontenc}  
+\usepackage[utf8]{inputenc}  
+\usepackage[english,russian]{babel}  
+\usepackage{amsmath}  
+\usepackage{graphicx}  
+\usepackage{listings}   
 \usepackage{verbatim}
 \usepackage{xcolor}  
 
-\usetheme{Madrid} % Выбор темы (можно заменить на другой, например "Berlin", "Warsaw" и т.д.)
-\usecolortheme{default} % Цветовая схема
+\usetheme{Madrid} 
+\definecolor{mygreen}{RGB}{0, 128, 0} 
 
-% Настройка титульного слайда
+\setbeamercolor{structure}{fg=mygreen} 
+\setbeamercolor{palette primary}{fg=white, bg=mygreen} 
+\setbeamercolor{titlelike}{fg=white, bg=mygreen} 
+\setbeamercolor{block title}{fg=white, bg=mygreen} 
+
 \title[МОП]{Краткая теория множеств}
 \author{Салимли Айзек}
 \institute{MathLang}
@@ -23,7 +27,6 @@
 
 \begin{document}
 
-% Титульный слайд
 \begin{frame}
     \titlepage
 \end{frame}
@@ -31,7 +34,7 @@
 \lstset{
     language=Haskell,
     basicstyle=\ttfamily\small,
-    inputencoding=utf8,  % Двойная обработка кодировки
+    inputencoding=utf8,  
     extendedchars=true,
     literate={�}{{\bfseries?}}1 {^^ff}{{\bfseries?}}1,
     breaklines=true,
@@ -40,14 +43,12 @@
     frame=single
 }
 
-% Автоматическое содержание перед каждым разделом
 \AtBeginSection[]{
     \begin{frame}{Содержание}
         \tableofcontents[currentsection]
     \end{frame}
 }
 
-% Раздел 1
 \section{Функции как отображения}
 
 \begin{frame}{Отображения}
