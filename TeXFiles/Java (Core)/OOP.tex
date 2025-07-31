@@ -1,0 +1,254 @@
+\documentclass{beamer}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usetheme{Madrid}
+\definecolor{mygreen}{RGB}{250, 110, 0} 
+
+\setbeamercolor{structure}{fg=mygreen} 
+\setbeamercolor{palette primary}{fg=white, bg=mygreen} 
+\setbeamercolor{titlelike}{fg=white, bg=mygreen} 
+\setbeamercolor{block title}{fg=white, bg=mygreen} 
+
+\title[Java Core]{Начало}
+\author{Салимли Айзек}
+\institute{MathLang}
+\date{\today}
+\newenvironment{rusdefinition}[1][Определение]{
+    \begin{block}{#1}
+}{\end{block}}
+\newenvironment{rexample}[1][Пример]{\begin{exampleblock}{#1}}{\end{exampleblock}}
+\newenvironment{forMain}[1][Файл Main.java]{\begin{exampleblock}{#1}}{\end{exampleblock}}
+
+\lstset{
+    language=Haskell,
+    basicstyle=\ttfamily\small,
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={�}{{\bfseries?}}1 {^^ff}{{\bfseries?}}1,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2,
+    frame=single
+}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\AtBeginSection[]{
+    \begin{frame}{Содержание}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\section{Смысл Java}
+\begin{frame}{Смысл Java}
+    \begin{itemize}
+        \item \textbf{А зачем?}
+        \begin{itemize}
+            \item Write Once Run Anywhere (WORA)
+            \item Переносимость между устройствами (JVM)
+            \item Безопасность и надёжность (vs C++)
+        \end{itemize}
+        
+        \item \textbf{А чем лучше друих языков?}
+        \begin{itemize}
+            \item Автоматическое управление памятью (GC)
+            \item Богатая стандартная библиотека
+            \item Мультиплатформенность
+            \item Легкая реализация многопоточности (IMHO)
+        \end{itemize}
+        
+        \item \textbf{Философия}
+        \begin{itemize}
+            \item Объектно-ориентированный подход (ООП)
+            \item Читаемость кода
+            \item Жёсткая типизация + проверки на этапе компиляции
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Что это за слова...}
+\begin{frame}{Что это за слова...}
+    \begin{itemize}
+        \item \textcolor[rgb]{0.0, 0.5, 0.0}{\textbf{JVM (Java Virtual Machine)}} – виртуальная машина, выполняет байткод Java.
+        \item \textcolor[rgb]{0.0, 0.5, 0.0}{\textbf{JDK (Java Development Kit)}} – набор для разработки (компилятор, библиотеки и др.).
+        \item \textcolor[rgb]{0.0, 0.5, 0.0}{\textbf{JIT (Just In Time)}} – компилятор, ускоряющий выполнение кода в JVM.
+        \item \textcolor[rgb]{0.0, 0.5, 0.0}{\textbf{JRE (Java Runtime Environment)}} – среда для запуска Java-программ (JVM + библиотеки).
+        \item \textcolor{red}{JEE (Java Enterprise Edition)} – платформа для корпоративных приложений.
+        \item \textcolor{red}{J2EE (Java 2 Enterprise Edition)} – старое название JEE.
+        \item \textcolor{red}{JSE (Java Standard Edition)} – базовая версия Java для десктопных приложений.
+        \item \textcolor{gray}{Garbage collector} – автоматически удаляет неиспользуемые объекты из памяти.
+    \end{itemize}
+\end{frame}
+
+\section{Среда разработки, тестирование и сборщики проекта}
+\begin{frame}{Среда разработки, сборщики проекта и тестирование}
+    \begin{itemize}
+        \item \textcolor[rgb]{0.0, 0.5, 0.0}{IntelliJ IDEA} (CE / \textcolor[rgb]{0.0, 0.5, 0.0}{Ultimate}) / Eclipse IDE / NetBean - среды разработки
+        \item \textcolor[rgb]{0.0, 0.5, 0.0}{Gradle} / Apache Maven - сборщики проектов 
+        \item \textcolor[rgb]{0.0, 0.5, 0.0}{JUnit} / Mockito - библиотеки для тестирования
+    \end{itemize}
+\end{frame}
+
+\section{4 принципа ООП в Java}
+\begin{frame}{4 принципа ООП в Java}
+\begin{rusdefinition}
+    \begin{itemize}
+        \item \textcolor{red}{Абстракция} – выделение главных характеристик объекта, игнорируя несущественные детали.
+        \item Полиморфизм – возможность объектов с одинаковой спецификацией иметь разную реализацию.
+        \item Инкапсуляция – объединение данных и методов в единый объект, скрывая внутреннюю реализацию.
+        \item Наследование – создание новых классов на основе существующих с переносом их свойств и методов.
+    \end{itemize}
+\end{rusdefinition}
+\end{frame}
+
+\subsection{Абстракция}
+\begin{frame}{Абстракция}
+\begin{rusdefinition}
+    Упрощение реальности через выделение значимых характеристик объекта. 
+\end{rusdefinition}
+\begin{rexample}
+    \begin{itemize}
+        \item Нам неважно как именно работает изнутри самолет: 
+        \item мы знаем \textit{что} самолет летит, 
+        \item но не \textit{как} он это делает (запуск двигателей, закрытие шасси, включение gps, и т.д.).
+    \end{itemize}
+\end{rexample}
+\end{frame}
+
+\subsection{Инкапсуляция}
+\begin{frame}{Инкапсуляция}
+\begin{rusdefinition}   
+Сокрытие внутренней реализации и защита данных.
+\end{rusdefinition}
+\begin{rexample}
+    \begin{itemize}
+        \item Банкомат: 
+        \item мы вводим PIN (публичный метод), 
+        \item но не можем напрямую изменить баланс на счете, так как это приватное поле. Эх$\dots$
+    \end{itemize}
+\end{rexample}
+\end{frame}
+
+\subsection{Полиморфизм}
+\begin{frame}{Полиморфизм}
+\begin{rusdefinition}
+Разное поведение объектов при одном интерфейсе. 
+\end{rusdefinition}
+\begin{rexample}
+    \begin{itemize}
+    \item Физическая красная кнопка "Пуск":
+    \item На пульте управления ракеты она запускает ракету,
+    \item На пульте управления телевизора — включает телевизор,
+    \item Но форма кнопки (интерфейс) одинакова: круглая, красная.
+\end{itemize}
+\end{rexample}
+\end{frame}
+
+\subsection{Наследование}
+\begin{frame}{Наследование}
+    \begin{rusdefinition}
+    Переиспользование свойств родительского класса. 
+\end{rusdefinition}
+\begin{rexample}
+    \begin{itemize}
+        \item Транспорт: 
+        \item У \textit{Велосипеда} и \textit{Автомобиля} есть общие черты (колеса, движение),
+        \item но у каждого — уникальные особенности (мотор, педали).
+    \end{itemize}
+\end{rexample}
+\end{frame}
+
+\subsubsection{Множественное наследование}
+\begin{frame}{Множественное наследование}
+    \setbeamertemplate{itemize/enumerate body begin}{\scriptsize}
+    \setbeamertemplate{itemize/enumerate subbody begin}{\tiny}
+    
+    \begin{rusdefinition}
+        \footnotesize
+        Множественное наследование - возможность класса иметь несколько непосредственных родительских классов, наследуя их свойства и методы. \\
+        \textbf{\textcolor{red}{В Java множественное наследование запрещено!}}
+    \end{rusdefinition}
+
+    \vspace{-0.2cm}
+    \begin{rusdefinition}
+        \footnotesize
+        В Java множественное наследование классов запрещено для:
+        \begin{itemize}
+            \item Избежания "проблемы ромба" (неоднозначность при вызове методов)
+            \item Упрощения архитектуры
+        \end{itemize}
+    \end{rusdefinition}
+
+    \vspace{-0.2cm}
+    \begin{rexample}
+        \footnotesize
+        Альтернативы в Java:
+        \begin{itemize}
+            \item \textbf{Интерфейсы} (множественная реализация)
+            \item \textbf{Композиция} (включение объектов других классов)
+            \item \textbf{Дефолтные методы} (реализация в интерфейсах с Java 8)
+        \end{itemize}
+    \end{rexample}
+    
+    \setbeamertemplate{itemize/enumerate body begin}{\normalsize}
+    \setbeamertemplate{itemize/enumerate subbody begin}{\normalsize}
+\end{frame}
+
+\section{Стиль написания Java-кода}
+\begin{frame}{Стиль написания Java-кода}
+    \begin{itemize}
+        \item UpperCamelCase - классы, файлы классов.
+        \item lowerCamelCase - функции, переменные. 
+        \item UPPERCASE - перечисления в enum.
+        \item lowercase - пакеты.
+    \end{itemize}
+    \begin{rexample}
+        \begin{itemize}
+            \item class MyClass - класс
+            \item void myFunction - метод (функция)
+            \item int myInt - переменная 
+            \item enum MyEnum = {MATH, IT} - перечисления 
+            \item org.mypackage.lesson - пакет в пакетах
+        \end{itemize}
+    \end{rexample}
+    
+\end{frame}
+
+\section{Первая программа}
+\begin{frame}{Первая программа}
+    \begin{rusdefinition}
+        \begin{itemize} 
+            \item \textcolor{red}{public class - должен называться так же как файл .java}
+            \item \textcolor{red}{public class - должен быть единственным в файле}
+        \end{itemize}
+    \end{rusdefinition}
+
+    \begin{forMain}
+        public class Main\{ \\
+            \texttt{ } public static void main(String[] args)\{ \\
+            \texttt{ } \texttt{ } System.out.println("Let's start"); \\
+            \texttt{ } \}    \\
+        \}
+    \end{forMain}
+\end{frame}
+
+\begin{frame}{}
+    \centering
+    \Large Спасибо за внимание! 
+
+    \small \textcolor{red}{Пишите вопросы в комментариях!!!}
+    
+    \vspace{1cm}
+\end{frame}
+
+\end{document}
