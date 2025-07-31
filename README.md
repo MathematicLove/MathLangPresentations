@@ -1,4 +1,4 @@
-# MathLangPresentations
+# $MathLang$ $_{presentations}$
 Презентации MathLang
 - Математические основы программирования
   - Краткая теория множеств 
