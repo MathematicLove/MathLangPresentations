@@ -1,0 +1,273 @@
+\documentclass{beamer}
+\usepackage[T1,T2A]{fontenc}  
+\usepackage[utf8]{inputenc}  
+\usepackage[english,russian]{babel}  
+\usepackage{amsmath}  
+\usepackage{graphicx}  
+\usepackage{listings}   
+\usepackage{verbatim}
+\usepackage{xcolor}  
+
+\usetheme{Madrid} 
+\definecolor{mygreen}{RGB}{50, 50, 220} 
+
+\setbeamercolor{structure}{fg=mygreen} 
+\setbeamercolor{palette primary}{fg=white, bg=mygreen} 
+\setbeamercolor{titlelike}{fg=white, bg=mygreen} 
+\setbeamercolor{block title}{fg=white, bg=mygreen} 
+
+\title[Философия программирования]{Путь в IT и нужна ли математика в программировании сегодня?}
+\author{Салимли Айзек}
+\institute{MathLang}
+\date{\today}
+\newenvironment{rusdefinition}[1][Определение]{
+    \begin{block}{#1}
+}{\end{block}}
+\newenvironment{rexample}[1][Пример]{\begin{exampleblock}{#1}}{\end{exampleblock}}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\lstset{
+    language=Haskell,
+    basicstyle=\ttfamily\small,
+    inputencoding=utf8,  
+    extendedchars=true,
+    literate={�}{{\bfseries?}}1 {^^ff}{{\bfseries?}}1,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2,
+    frame=single
+}
+
+\AtBeginSection[]{
+    \begin{frame}{Содержание}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\begin{section}{О себе}
+    \begin{frame}{О себе}
+        \begin{itemize}
+            \item Айзек
+            \item 22 года
+            \item ИКНК, математика и компьютерные науки
+            \item 1/2 года работы backend разработчиком \textcolor{olive}{Spring framework} \textcolor{red}{Java}
+            \item Год работы с LLM и AI \textcolor{blue}{TheBloomsBridge} (Python)
+            
+        \end{itemize}
+    \end{frame}
+\end{section}
+
+\begin{section}{Введение (дополнительное)}
+    \begin{frame}{Введение (дополнительное)}
+        \begin{itemize}
+            \item Все есть абстракция 
+            \item Формализм и программирование 
+            \item Тезис Черча-Тьюринга \textbf{(???)} 
+                \begin{itemize}
+                    \item Любая вычислимая функция может быть вычислена на машине Тьюринга в виде алгоритма
+                \end{itemize}
+            \item Почему сейчас математика не так важна?
+            \item \textcolor{red}{Математика - это обобщение}
+        \end{itemize}
+    \end{frame}
+\end{section}
+
+\subsection{Как появились компьютеры и что это?}
+    \subsubsection{Машина Тьюринга}
+    \begin{frame}{Машина Тьюринга}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{images/turing_machine.png}
+            \caption{Машина Тьюринга}
+        \end{figure}
+    \end{frame}
+
+\subsubsection{Автомат с памятью}
+\begin{frame}{Автомат с памятью}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{images/turing_machine_with_memory.png}
+        \caption{Автомат с памятью}
+    \end{figure}
+\end{frame}
+
+\begin{section}{Введение (основное)}
+\begin{frame}{Введение (основное)}
+    Математика - это обобщение
+    \begin{itemize}
+        \item Математический анализ 
+            \begin{itemize}
+                \item Пределы
+                \item Производные
+                \item Интегралы
+                \item Дифференциальные уравнения
+                \item Ряды Фурье
+                \item Ряды Тейлора
+            \end{itemize}
+        \item Линейная алгебра 
+            \begin{itemize}
+                \item Матрицы
+                \item Определители
+                \item Собственные значения и векторы
+                \item Системы линейных уравнений
+                \item Векторные пространства
+                \item Евклидовы пространства
+            \end{itemize}
+        \item Дискретная математика 
+            \begin{itemize}
+                \item Теория множеств
+                \item Теория графов
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Введение}
+    \begin{itemize}
+        \item Теория вероятностей и математическая статистика 
+            \begin{itemize}
+                \item Классическая теория вероятностей
+                \item Случайные величины
+                \item Случайные вектора
+                \item Регрессионный анализ
+                \item Статистические методы
+            \end{itemize}
+        \item Теория алгоритмов 
+            \begin{itemize}
+                \item Алгоритмы сортировки
+                \item Алгоритмы поиска
+                \item Алгоритмы на графах
+                \item Алгоритмы на деревьях
+                \item Алгоритмы на матрицах
+            \end{itemize}
+        \item Конечные автоматы 
+            \begin{itemize}
+                \item НДКА
+                \item ДКА
+                \item Машина Тьюринга
+                \item Нормальные алгоритмы Маркова
+            \end{itemize}
+    \end{itemize}
+    Что выбрать и что нужно ?
+\end{frame}
+\end{section}
+
+\begin{section}{Профессии в IT}
+    \begin{frame}{Профессии в IT}
+        \begin{itemize}
+            \item Программист \begin{itemize}
+                \item Backend  
+                \item Frontend  
+                \item Fullstack 
+                \item Mobile
+                \item Web 
+                \item Game 
+                \item Quantum \textbf{(физика и математика обязательны)}
+            \end{itemize}
+            \item Системный архитектор \begin{itemize}
+                \item Архитектура баз данных
+                \item Архитектура сетей
+                \item Архитектура систем
+            \end{itemize}
+            \item DevOps \begin{itemize}
+                \item DevOps Engineer
+                \item DevOps Architect
+                \item DevOps Manager
+                \item DevOps Analyst
+                \item DevOps Developer 
+            \end{itemize}
+            \end{itemize}
+        \end{frame}
+        \begin{frame}{Профессии в IT}
+            \begin{itemize}
+            \item Machine Learning Engineer \begin{itemize}
+                \item Создание моделей \textbf{(математика и статистика обязательны)}
+                \item Интеграция готовых моделей \textbf{(математика и статистика обязательны)}
+            \end{itemize}
+            \item Data Engineer / Scientist  \textbf{(математика и статистика обязательны)}
+            \item Data Analyst  \textbf{(математика и статистика обязательны)}
+            \item Тестировщик 
+            \item Сис. админ. 
+            \item Компиляторы и формальные языки \textbf{(Дискретная математика и теория алгоритмов обязательны)}
+            \item Криптография \textbf{(Дискретная математика обязательна)}
+        \end{itemize}
+    \end{frame}
+
+    \begin{section}{Математика в IT}
+        \begin{frame}{Математика в IT}
+            \begin{itemize}
+                \item LLM - \textbf{(большие языковые модели)}
+                \item BlockChain - \textbf{(создание блокчейнов и криптовалют)}
+                \item Quantum - \textbf{(создание квантовых компьютеров)}
+                \item Machine Learning - \textbf{(обучение моделей на основе данных)}
+                \item Data Science - \textbf{(обработка и анализ данных)}
+                \item Computer Vision - \textbf{(Автоматизация обработки изображений и видео)} 
+                \item Компиляторы и формальные языки - \textbf{(создание языков программирования, компиляторов, интерпретаторов)}
+            \end{itemize}
+        \end{frame}
+    \end{section}
+
+    \begin{section}{Какой язык выбрать?}
+        \begin{frame}{Какой язык выбрать?}
+            \begin{itemize}
+                \item \textcolor{blue}{Python} 
+                \item \textcolor{red}{Java}
+                \item \textcolor{olive}{C и C++}
+                \item \textcolor{magenta}{C\#}
+                \item \textcolor{orange}{JavaScript}
+                \item \textcolor{purple}{Go}
+                \item \textcolor{brown}{Rust}
+                \item \textcolor{pink}{Haskell}
+                \item \textcolor{gray}{Q\#}
+                \item \textcolor{cyan}{Ruby}
+                \item \textcolor{teal}{Swift}
+            \end{itemize}
+        \end{frame}
+    \end{section}
+
+\begin{section}{Современный порог в IT}
+    \begin{frame}{Современный порог в IT}
+        \begin{itemize}
+            \item \textcolor{red}{\textbf{Язык - это инструмент}} 
+            \item Тестирование (хотя бы базовые знания)
+            \item Понимание принципов \begin{itemize}
+                \item \textcolor{red}{ООП}
+                \item SOLID
+                \item DRY
+            \end{itemize}
+        \end{itemize}
+            \begin{itemize}
+                \item \textcolor{red}{Базы данных (SQL, NoSQL, Cache)}
+                \item Функциональное программирование
+                \item Процедурное программирование
+                \item \textcolor{red}{Сети ЭВМ (протоколы передачи данных)}
+                \item \textcolor{red}{Архитектура компьютера}
+                \item UNIX Системы
+                \item REST
+                \item Docker, k8s
+                \item CI/CD
+                \item \textcolor{red}{Git}
+                \item \textcolor{red}{Фреймворки}
+        \end{itemize}
+    \end{frame}
+\end{section}
+
+
+
+
+
+\end{section}
+
+\begin{frame}{}
+    \centering
+    \Large Спасибо за внимание!
+    
+    \vspace{1cm}
+    \small \textcolor{red}{Пишите вопросы в комментариях!!!}
+\end{frame}
+
+\end{document}
