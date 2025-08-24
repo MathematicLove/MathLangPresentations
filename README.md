@@ -1,4 +1,8 @@
-# MathLangPresentations
+# $MathLang$ $_{presentations}$
 Презентации MathLang
 - Математические основы программирования
   - Краткая теория множеств 
+- Теория алгоритмов
+  - Конечные автоматы
+- Java (Core)
+  - Intro 
